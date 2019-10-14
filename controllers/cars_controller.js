@@ -22,11 +22,10 @@ module.exports.addCar = async (req, res) => {
 module.exports.updateCar = async (req, res) => {
   let {
     model,
-    seating,
-    isBooked
+    seating
   } = req.body;
   let car = await Car.findById(req.params.id);
-  if (car) {
+  if (!car.isBooked) {
     car = await Car.findByIdAndUpdate(req.params.id, req.body);
     res.status(200).json({ message: 'Updated successfully!!' });
   } else {
@@ -79,4 +78,14 @@ module.exports.bookCar = async (req, res) => {
     await car.save();
     res.status(400).json({ message: 'No such car!!' })
   }
+}
+
+module.exports.returnCar = async (req, res) => {
+  let car = await Car.findById(req.params.id);
+  car.isBooked = false;
+  car.booking.customer = null;
+  car.booking.issueDate = null;
+  car.booking.returnCar = null;
+  await car.save();
+  res.status(200).json({ message: 'Returned successfully!!' });
 }
