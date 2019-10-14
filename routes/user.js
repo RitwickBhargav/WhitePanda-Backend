@@ -13,8 +13,6 @@ router.post('/register', register);
 
 router.post('/login', login);
 
-router.get('/profile', passport.authenticate('jwt', {
-    session: false
-}), profile);
+router.get('/profile', passport.authenticate('jwt', {session: false}), profile);
 
 module.exports = router;
