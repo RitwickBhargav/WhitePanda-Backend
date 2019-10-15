@@ -1,5 +1,4 @@
 module.exports.register = async (req, res) => {
-  debugger
   let newUser = new User({
     name: req.body.name,
     email: req.body.email,
@@ -10,7 +9,6 @@ module.exports.register = async (req, res) => {
   User.addUser(newUser, (err, user) => {
     if (err) {
       let message = "";
-      debugger
       if (err.errors.email)
         message += "Email already exists.";
       return res.json({
@@ -21,7 +19,6 @@ module.exports.register = async (req, res) => {
       message = "";
       message1 = "";
       message2 = "";
-      debugger
       var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
       if (emailRegex.test(newUser.email) == false)
         message += "Email is not valid.";
