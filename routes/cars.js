@@ -1,5 +1,4 @@
 const express = require('express');
-const passport = require('passport');
 const router = express.Router();
 
 let {
@@ -13,14 +12,15 @@ let {
   viewCar
 } = require('../controllers/cars_controller');
 
+let { adminAuth, customerAuth, allAuth } = require('../config/auth');
 
-  router.get('/', passport.authenticate('jwt', {session: false}), cars);
-  router.get('/:id', passport.authenticate('jwt', {session: false}), viewCar);
-  router.post('/add', passport.authenticate('jwt', {session: false}), addCar);
-  router.post('/update/:id', passport.authenticate('jwt', {session: false}), updateCar);
-  router.get('/delete/:id', passport.authenticate('jwt', {session: false}), deleteCar);
-  router.get('/available', passport.authenticate('jwt', {session: false}), showAvailableCars);    
-  router.post('/book/:id', passport.authenticate('jwt', {session: false}), bookCar);
-  router.get('/return/:id', passport.authenticate('jwt', {session: false}), returnCar);
+  router.get('/', allAuth, cars);
+  router.post('/add', adminAuth, addCar);
+  router.post('/update/:id', adminAuth, updateCar);
+  router.get('/delete/:id', adminAuth, deleteCar);
+  router.get('/available', allAuth, showAvailableCars);    
+  router.post('/book/:id', customerAuth, bookCar);
+  router.get('/return/:id', adminAuth, returnCar);
+  router.get('/:id', allAuth, viewCar);
 
 module.exports = router;

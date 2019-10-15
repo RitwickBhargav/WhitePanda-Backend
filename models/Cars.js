@@ -5,7 +5,6 @@ const uniqueValidator = require('mongoose-unique-validator');
 const CarSchema = mongoose.Schema({
     vehicleNumber: {
         type: String,
-        unique: true,
         required: true
     },
     model: {
@@ -21,10 +20,10 @@ const CarSchema = mongoose.Schema({
         default: false
     },
     booking: {
-        customer: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        },
+        // customer: {
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     ref: 'User'
+        // },
         issueDate: {
             type: String
         },
@@ -34,6 +33,5 @@ const CarSchema = mongoose.Schema({
     }
 });
 
-CarSchema.plugin(uniqueValidator);
 
-const Car = module.exports = mongoose.model('Cars', CarSchema);
+const Cars = module.exports = mongoose.model('Cars', CarSchema);

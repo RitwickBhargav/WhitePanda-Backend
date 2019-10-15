@@ -1,7 +1,9 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const User = require("../models/User");
+
 module.exports.register = async (req, res) => {
+  debugger
   let {
     name,
     email,
@@ -20,7 +22,7 @@ module.exports.register = async (req, res) => {
       if (phoneRegex.test(Number(contact))) {
         let user = await User.findOne({ email });
         if (user) {
-          return res.status(400).json({ message: 'User already registered!!' });
+          return res.status(4000).json({ message: 'User already registered!!' });
         } else {
           let newUser = {
             name, email, password, role, contact
@@ -47,11 +49,13 @@ module.exports.register = async (req, res) => {
     res.status(400).json({ message: 'EmailID is not valid!!' });
   }
 }
+
 module.exports.login = async (req, res) => {
   let {
     email,
     password
   } = req.body;
+  let role = req.originalUrl.split('/')[2];
   let user = await User.findOne({ email });
   if (!user) {
     return res.json({
@@ -59,7 +63,6 @@ module.exports.login = async (req, res) => {
       message: "User not found!"
     }).status(400);
   }
-  debugger
   let isMatch = await bcrypt.compare(password, user.password);
   if (isMatch) {
     const token = jwt.sign({
@@ -85,6 +88,7 @@ module.exports.login = async (req, res) => {
     }).status(401);
   }
 }
+
 module.exports.profile = (req, res) => {
   // console.log(req.user);
   return res.json(
