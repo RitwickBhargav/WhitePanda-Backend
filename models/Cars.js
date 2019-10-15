@@ -20,10 +20,10 @@ const CarSchema = mongoose.Schema({
         default: false
     },
     booking: {
-        // customer: {
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: 'User'
-        // },
+        customer: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
         issueDate: {
             type: String
         },
