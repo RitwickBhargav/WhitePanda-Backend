@@ -31,7 +31,7 @@
 
 ## Postman API docs
 
-> [https://documenter.getpostman.com/view/7935280/SVtYRS8A](https://documenter.getpostman.com/view/7935280/SVtYRS8A)
+> [https://documenter.getpostman.com/view/7935280/SVtYRmJQ](https://documenter.getpostman.com/view/7935280/SVtYRmJQ)
 
 ## Installation and Run Scripts
 1. `npm install`
