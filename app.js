@@ -7,6 +7,7 @@ const path = require('path');
 
 const app = express();
 
+mongoose.set('useCreateIndex', true);
 require('./config/dbconnection');
 
 app.use(cors());
@@ -15,10 +16,16 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/', (req, res) => {
+    return res.status(200).json({
+        message: "Car Rental Agency"
+    });
+});
+
 const User = require('./models/User');
 const Car = require('./models/Cars');
 
-app.use('/api', require('./routes/index'));
+//app.use('/api', require('./routes/index'));
 app.use('/api/users', require('./routes/user'));
 app.use('/api/cars', require('./routes/cars'));
 
