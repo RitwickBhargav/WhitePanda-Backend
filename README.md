@@ -42,11 +42,10 @@ I have used BcryptJS and JsonWebToken for authentication.
 
     npm i bcryptjs jsonwebtoken
 
-# APIs for WhitePanda Backend Task for Car Rental System. Functions:
+## APIs for WhitePanda Backend Task for Car Rental System. Functions:
 
-## Register/login users (JWT).
+### Register/login users (JWT).
     1. Add/update/delete Cars.
     2. Search Cars on the basis of availability and filters.
     3. Book car if its available
     4. Return a car
-    
