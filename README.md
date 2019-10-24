@@ -48,5 +48,5 @@ I have used BcryptJS and JsonWebToken for authentication.
     1. Register/login users (JWT).
     2. Add/update/delete Cars.
     3. Search Cars on the basis of availability and filters.
-    4. Book car if its available
-    5. Return a car
+    4. Book car if its available.
+    5. Return a car.
